@@ -13,8 +13,9 @@
     <junit.version>5.6.1</junit.version>
     <platform.version>1.6.1</platform.version>
     <logback.version>1.2.3</logback.version>
-    <surefire.version>3.0.0-M4</surefire.version>
+    <surefire.version>2.22.1</surefire.version>
     <assembler.version>3.1.0</assembler.version>
+    <mockito.version>2.23.4</mockito.version>
   </properties>
 
   <dependencies>
@@ -50,6 +51,18 @@
       <artifactId>jsoup</artifactId>
       <version>1.13.1</version>
     </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>${mockito.version}</version>
+      <scope>test</scope>
+    </dependency>
+      <dependency>
+          <groupId>org.junit.jupiter</groupId>
+          <artifactId>junit-jupiter-params</artifactId>
+          <version>5.6.1</version>
+          <scope>test</scope>
+      </dependency>
   </dependencies>
 
   <build>
@@ -59,6 +72,9 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${surefire.version}</version>
+        <configuration>
+          <testFailureIgnore>true</testFailureIgnore>
+        </configuration>
       </plugin>
       <plugin>
         <!-- Produces 2 kinds of outputs:
@@ -102,6 +118,30 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>4.0.0</version>
+        <configuration>
+          <effort>Max</effort>
+          <threshold>Low</threshold>
+          <xmlOutput>true</xmlOutput>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs</artifactId>
+            <version>4.0.3</version>
+          </dependency>
+        </dependencies>
       </plugin>
     </plugins>
   </build>

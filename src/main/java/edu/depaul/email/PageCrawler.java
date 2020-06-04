@@ -5,13 +5,12 @@
  */
 package edu.depaul.email;
 
-import java.util.HashSet;
-import java.util.Set;
 import org.jsoup.nodes.Document;
 
-import static edu.depaul.email.StorageService.StorageType.EMAIL;
-import static edu.depaul.email.StorageService.StorageType.GOODLINKS;
-import static edu.depaul.email.StorageService.StorageType.BADLINKS;
+import java.util.HashSet;
+import java.util.Set;
+
+import static edu.depaul.email.StorageService.StorageType.*;
 
 
 /**
